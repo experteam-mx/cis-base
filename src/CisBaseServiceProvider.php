@@ -11,9 +11,8 @@ class CisBaseServiceProvider extends ServiceProvider
     {
 
         // Publish a config file
-        $configPath = __DIR__ . '/../config/cis-base.php';
         $this->publishes([
-            $configPath => config_path('cis-base.php'),
+            __DIR__ . '/../config/cis-base.php' => config_path('cis-base.php'),
         ], 'config');
 
     }
