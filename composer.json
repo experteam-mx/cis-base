@@ -1,0 +1,44 @@
+{
+  "name": "experteam/cis-base",
+  "description": "Base functionalities for CIS APIs",
+  "keywords": [
+    "experteam",
+    "cis",
+    "laravel",
+    "api"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Iraldo",
+      "email": "iraldoarevalo@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^8.0",
+    "laravel/framework": "^8.12",
+    "darkaonline/l5-swagger": "^8.0",
+    "orkhanahmadov/laravel-accept-language-middleware": "^1.2",
+    "shalvah/laravel-jsend": "^2.2"
+  },
+  "require-dev": {
+    "barryvdh/laravel-ide-helper": "^2.9"
+  },
+  "autoload": {
+    "psr-4": {
+      "Experteam\\CisBase\\": "src"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Experteam\\CisBase\\CisBaseServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
