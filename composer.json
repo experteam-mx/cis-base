@@ -35,7 +35,10 @@
     "laravel": {
       "providers": [
         "Experteam\\CisBase\\CisBaseServiceProvider"
-      ]
+      ],
+      "aliases": {
+        "RedisClient": "Experteam\\CisBase\\Facades\\RedisClientFacade"
+      }
     }
   },
   "minimum-stability": "dev",
