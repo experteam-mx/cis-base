@@ -2,10 +2,19 @@
 
 namespace Experteam\CisBase;
 
+use Experteam\CisBase\Facades\RedisClient;
 use Illuminate\Support\ServiceProvider;
 
 class CisBaseServiceProvider extends ServiceProvider
 {
+
+    public function register()
+    {
+
+        // Redis facade
+        app()->bind(RedisClient::class, fn() => new RedisClient());
+
+    }
 
     public function boot()
     {
