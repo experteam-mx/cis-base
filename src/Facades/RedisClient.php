@@ -10,31 +10,32 @@ use Illuminate\Support\Facades\Redis;
 class RedisClient
 {
 
-    public function set(string $key, $data, $exp = -1): void
+    public function set(string $key, $data, $exp = null): void
     {
 
-        if ($data instanceof Model)
-            $data = json_encode($data->toArray());
+        if (empty($exp) || $exp < 1)
+            Redis::set(
+                $key,
+                to_string($data)
+            );
         else
-            $data = json_encode($data);
-
-        Redis::set(
-            config('cis-base.redis-prefix') . $key,
-            $data,
-            'EX',
-            $exp
-        );
+            Redis::set(
+                $key,
+                to_string($data),
+                'EX',
+                $exp
+            );
 
     }
 
     public function del(string $key): int
     {
 
-        return Redis::del(config('cis-base.redis-prefix') . $key);
+        return Redis::del($key);
 
     }
 
-    public function hset($hash, $field, $data): void
+    public function hSet($hash, $field, $data): void
     {
 
         if ($data instanceof Model)
@@ -42,21 +43,24 @@ class RedisClient
         else
             $data = json_encode($data);
 
-        Redis::hset(config('cis-base.redis-prefix') . $hash, $field, $data);
+        Redis::hset($hash, $field, $data);
 
     }
 
-    public function get(string $key): object|bool|null
+    public function get(string $key, $object = true): object|string|false
     {
 
-        return json_decode(Redis::get($key));
+        if ($object)
+            return json_decode(Redis::get($key));
+        else
+            return Redis::get($key);
 
     }
 
-    public function exists(string $key): bool
+    public function exists(string|array $key): bool
     {
 
-        return Redis::exists($key) == 1;
+        return Redis::exists($key) >= 1;
 
     }
 
@@ -67,10 +71,10 @@ class RedisClient
 
     }
 
-    public function hget($hash, $field): object|bool|null
+    public function hget($hash, $field): object|false
     {
 
-        return json_decode(Redis::hget($hash, $field));
+        return json_decode(Redis::hGet($hash, $field));
 
     }
 
