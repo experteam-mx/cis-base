@@ -10,40 +10,25 @@ use Illuminate\Support\Facades\Redis;
 class RedisClient
 {
 
+    /*
+     * Values
+     */
+
     public function set(string $key, $data, $exp = null): void
     {
 
         if (empty($exp) || $exp < 1)
             Redis::set(
-                $key,
+                config('cis-base.redis.prefix') . $key,
                 to_string($data)
             );
         else
             Redis::set(
-                $key,
+                config('cis-base.redis.prefix') . $key,
                 to_string($data),
                 'EX',
                 $exp
             );
-
-    }
-
-    public function del(string $key): int
-    {
-
-        return Redis::del($key);
-
-    }
-
-    public function hSet($hash, $field, $data): void
-    {
-
-        if ($data instanceof Model)
-            $data = json_encode($data->toArray());
-        else
-            $data = json_encode($data);
-
-        Redis::hset($hash, $field, $data);
 
     }
 
@@ -64,17 +49,53 @@ class RedisClient
 
     }
 
-    public function hexists($hash, $field): bool
+    public function del(string $key): int
     {
 
-        return !is_null($this->hget($hash, $field));
+        return Redis::del(config('cis-base.redis.prefix') . $key);
 
     }
 
-    public function hget($hash, $field): object|false
+    /*
+     * Hashes
+     */
+
+    public function hset($key, $field, $data): void
     {
 
-        return json_decode(Redis::hGet($hash, $field));
+        if ($data instanceof Model)
+            $data = json_encode($data->toArray());
+        else
+            $data = json_encode($data);
+
+        Redis::hset(config('cis-base.redis.prefix') . $key, $field, $data);
+
+    }
+
+    public function hexists($key, $field): bool
+    {
+
+        return !is_null($this->hget($key, $field));
+
+    }
+
+    public function hget($key, $field): object|null
+    {
+
+        return json_decode(Redis::hGet($key, $field));
+
+    }
+
+    public function hgetall($key, $object = true): array
+    {
+
+        if ($object)
+            return array_map(
+                fn($item) => json_decode($item),
+                Redis::hGetAll($key)
+            );
+        else
+            return Redis::hGetAll($key);
 
     }
 
