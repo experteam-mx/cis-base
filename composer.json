@@ -24,6 +24,12 @@
     "orkhanahmadov/laravel-accept-language-middleware": "^1.2",
     "shalvah/laravel-jsend": "^2.2"
   },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/iraldoad/laravel-api-key.git"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "Experteam\\CisBase\\": "src"
