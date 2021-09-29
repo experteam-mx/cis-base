@@ -27,7 +27,7 @@ return [
     ],
 
     'redis' => [
-        'prefix' => env('REDIS_PREFIX', 'base.')
+        'prefix' => env('REDIS_PREFIX', 'base:')
     ],
 
 ];
