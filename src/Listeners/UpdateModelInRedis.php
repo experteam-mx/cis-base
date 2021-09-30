@@ -3,7 +3,7 @@
 namespace Experteam\CisBase\Listeners;
 
 use Experteam\CisBase\Events\ModelInRedisChanged;
-use Experteam\CisBase\Facades\RedisClient;
+use RedisClient;
 use ICanBoogie\Inflector;
 
 class UpdateModelInRedis
