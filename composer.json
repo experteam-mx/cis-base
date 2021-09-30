@@ -22,7 +22,8 @@
     "darkaonline/l5-swagger": "^8.0",
     "ejarnutowski/laravel-api-key": "dev-master",
     "orkhanahmadov/laravel-accept-language-middleware": "^1.2",
-    "shalvah/laravel-jsend": "^2.2"
+    "shalvah/laravel-jsend": "^2.2",
+    "icanboogie/inflector": "^2.1"
   },
   "repositories": [
     {

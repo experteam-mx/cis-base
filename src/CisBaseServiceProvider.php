@@ -14,6 +14,9 @@ class CisBaseServiceProvider extends ServiceProvider
         // Redis facade
         app()->bind(RedisClient::class, fn() => new RedisClient());
 
+        // Event service provider
+        app()->register(EventServiceProvider::class);
+
     }
 
     public function boot()
