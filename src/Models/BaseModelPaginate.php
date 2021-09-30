@@ -7,6 +7,7 @@ namespace Experteam\CisBase\Models;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Schema;
+use Throwable;
 
 trait BaseModelPaginate
 {
@@ -14,7 +15,7 @@ trait BaseModelPaginate
     /**
      * @param Builder $query
      * @return Builder
-     * @throws Exception
+     * @throws Exception|Throwable
      */
     public function scopeCustomPaginate(Builder $query): Builder
     {
@@ -28,23 +29,24 @@ trait BaseModelPaginate
         if ($limit > 1000)
             throw new Exception(__('general.more_than_1000'));
 
-        $order = request()->query
-            ->get('order', []);
+        request()->collect('order')
+            ->each(function ($direction, $field) use ($query) {
 
-        if (!is_array($order))
-            throw new Exception(__('general.order_invalid_format'));
+                throw_unless(
+                    in_array(strtoupper($direction), ['ASC', 'DESC']),
+                    Exception::class,
+                    __('general.order_invalid_direction', ['value' => $direction])
+                );
 
-        foreach ($order as $field => $direction) {
+                throw_unless(
+                    Schema::hasColumn($query->getModel()->getTable(), $field),
+                    Exception::class,
+                    __('general.order_invalid_field', ['field' => $field])
+                );
 
-            if (!in_array(strtoupper($direction), ['ASC', 'DESC']))
-                throw new Exception(__('general.order_invalid_direction', ['value' => $direction]));
+                $query->orderBy($field, $direction);
 
-            if (!Schema::hasColumn($query->getModel()->getTable(), $field))
-                throw new Exception(__('general.order_invalid_field', ['field' => $field]));
-
-            $query->orderBy($field, $direction);
-
-        }
+            });
 
         return $query->offset($offset)
             ->limit($limit);
