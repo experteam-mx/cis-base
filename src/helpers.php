@@ -51,28 +51,6 @@ if (!function_exists('to_string')) {
 
 }
 
-if (!function_exists('is_array_assoc')) {
-
-    function is_array_assoc(array $array): bool
-    {
-
-        return count(array_filter(array_keys($array), 'is_string')) > 0;
-
-    }
-
-}
-
-if (!function_exists('is_array_numeric')) {
-
-    function is_array_numeric(array $array): bool
-    {
-
-        return count(array_filter(array_keys($array), 'is_string')) === 0;
-
-    }
-
-}
-
 if (!function_exists('round_four')) {
 
     function round_four($number): float
@@ -81,6 +59,19 @@ if (!function_exists('round_four')) {
         return round(
             floatval($number),
             4
+        );
+
+    }
+
+}
+
+if (!function_exists('array_to_object')) {
+
+    function array_to_object(array $array): object
+    {
+
+        return json_decode(
+            json_encode($array)
         );
 
     }
