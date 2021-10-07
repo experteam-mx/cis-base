@@ -67,7 +67,7 @@ if (!function_exists('round_four')) {
 
 if (!function_exists('array_to_object')) {
 
-    function array_to_object(array $array): object
+    function array_to_object(array $array): object|array
     {
 
         return json_decode(
