@@ -4,7 +4,7 @@ namespace Experteam\CisBase\Listeners;
 
 use Experteam\CisBase\Events\ModelInRedisChanged;
 use RedisClient;
-use ICanBoogie\Inflector;
+use Str;
 
 class UpdateModelInRedis
 {
@@ -22,10 +22,8 @@ class UpdateModelInRedis
 
         $class = class_basename($model);
 
-        $inflector = Inflector::get('en');
-
-        $class = $inflector->pluralize($class);
-        $class = $inflector->underscore($class);
+        $class = Str::plural($class);
+        $class = Str::camel($class);
 
         RedisClient::hset($class, $model->id, $model);
 

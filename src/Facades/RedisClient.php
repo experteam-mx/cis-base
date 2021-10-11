@@ -75,7 +75,7 @@ class RedisClient
     public function hexists($key, $field): bool
     {
 
-        return !is_null($this->hget($key, $field));
+        return Redis::hExists($key, $field);
 
     }
 

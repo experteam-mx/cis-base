@@ -27,6 +27,29 @@ class CisBaseServiceProvider extends ServiceProvider
             __DIR__ . '/../config/cis-base.php' => config_path('cis-base.php'),
         ], 'config');
 
+        // Custom validation rules
+        \Validator::extend('key_ids', function ($attribute, $values, $parameters) {
+
+            $attribute = explode('.', $attribute);
+
+            return is_numeric($attribute[1]) &&
+                \DB::table($parameters[0])
+                    ->where(
+                        $parameters[1],
+                        $attribute[1]
+                    )->exists();
+
+        });
+        \Validator::extend('in_redis', function ($attribute, $values, $parameters) {
+
+            $isHash = filter_var($parameters[1] ?? true, FILTER_VALIDATE_BOOLEAN);
+
+            return $isHash ?
+                \RedisClient::hexists($parameters[0], $values) :
+                \RedisClient::exists($parameters[0]);
+
+        });
+
     }
 
 }
