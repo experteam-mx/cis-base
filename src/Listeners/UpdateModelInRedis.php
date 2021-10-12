@@ -23,7 +23,7 @@ class UpdateModelInRedis
         $class = class_basename($model);
 
         $class = Str::plural($class);
-        $class = Str::camel($class);
+        $class = Str::snake($class);
 
         RedisClient::hset($class, $model->id, $model);
 
