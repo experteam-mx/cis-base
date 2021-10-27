@@ -20,7 +20,7 @@ class ESFormatter
         foreach ($logger->getHandlers() as $handler)
             $handler->setFormatter(
                 new LineFormatter(
-                    "[%datetime%] app.%level_name%: %message% %context% %extra%\n"
+                    "[%datetime%] app.%level_name%: %message% %context%\n"
                 )
             );
 
