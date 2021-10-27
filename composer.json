@@ -45,7 +45,8 @@
         "Experteam\\CisBase\\CisBaseServiceProvider"
       ],
       "aliases": {
-        "RedisClient": "Experteam\\CisBase\\Facades\\RedisClientFacade"
+        "RedisClient": "Experteam\\CisBase\\Facades\\RedisClientFacade",
+        "ESLog": "Experteam\\CisBase\\Facades\\ESLogFacade"
       }
     },
     "scripts-dev": {

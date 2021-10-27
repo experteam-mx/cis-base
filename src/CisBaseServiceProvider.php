@@ -2,6 +2,7 @@
 
 namespace Experteam\CisBase;
 
+use Experteam\CisBase\Facades\ESLog;
 use Experteam\CisBase\Facades\RedisClient;
 use Illuminate\Support\ServiceProvider;
 
@@ -13,6 +14,9 @@ class CisBaseServiceProvider extends ServiceProvider
 
         // Redis facade
         app()->bind(RedisClient::class, fn() => new RedisClient());
+
+        // Redis facade
+        app()->bind(ESLog::class, fn() => new ESLog());
 
         // Event service provider
         app()->register(EventServiceProvider::class);
