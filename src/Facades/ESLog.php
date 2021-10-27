@@ -14,7 +14,7 @@ class ESLog
 
         Log::channel('elk')
             ->error(
-                str_replace(':', '', $message),
+                $message,
                 array_merge(
                     $this->defaultContext(),
                     $context
