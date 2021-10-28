@@ -2,9 +2,11 @@
 
 namespace Experteam\CisBase\Listeners;
 
+use ESLog;
 use Experteam\CisBase\Events\ModelChanged;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SaveModelAuditLog
+class SaveModelAuditLog implements ShouldQueue
 {
 
     /**
@@ -16,6 +18,13 @@ class SaveModelAuditLog
     public function handle(ModelChanged $event)
     {
 
+        $modelClass = $event->model::class;
+
+        ESLog::notice("Changes in the $modelClass model.", [
+            'before' => $event->originalAttrs,
+            'after' => $event->model->toArray(),
+            'user' => $event->user,
+        ]);
 
     }
 

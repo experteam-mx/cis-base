@@ -13,15 +13,22 @@ class ModelChanged
 
     public Model $model;
 
+    public array $originalAttrs;
+
+    public object|null $user;
+
     /**
      * Create a new event instance.
      *
      * @param Model $model
+     * @param array $user
      */
-    public function __construct(Model $model)
+    public function __construct(Model $model, object|null $user = null)
     {
 
         $this->model = $model;
+        $this->originalAttrs = $model->getOriginal();
+        $this->user = $user;
 
     }
 
