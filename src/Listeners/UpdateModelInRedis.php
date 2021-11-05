@@ -25,7 +25,10 @@ class UpdateModelInRedis
         $class = Str::plural($class);
         $class = Str::snake($class);
 
-        RedisClient::hset($class, $model->id, $model);
+        if (!empty($model->deleted_at))
+            RedisClient::hdel($class, $model->id, $model);
+        else
+            RedisClient::hset($class, $model->id, $model);
 
     }
 

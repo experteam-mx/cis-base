@@ -14,7 +14,7 @@ class RedisClient
      * Values
      */
 
-    public function set(string $key, $data, $exp = null): void
+    public function set(string $key, mixed $data, $exp = null): void
     {
 
         if (empty($exp) || $exp < 1)
@@ -60,7 +60,7 @@ class RedisClient
      * Hashes
      */
 
-    public function hset($key, $field, $data): void
+    public function hset(string $key, string $field, mixed $data): void
     {
 
         if ($data instanceof Model)
@@ -72,21 +72,21 @@ class RedisClient
 
     }
 
-    public function hexists($key, $field): bool
+    public function hexists(string $key, string $field): bool
     {
 
         return Redis::hExists($key, $field);
 
     }
 
-    public function hget($key, $field): object|null
+    public function hget(string $key, string $field): object|null
     {
 
         return json_decode(Redis::hGet($key, $field));
 
     }
 
-    public function hgetall($key, $object = true): array
+    public function hgetall(string $key, $object = true): array
     {
 
         if ($object)
@@ -96,6 +96,13 @@ class RedisClient
             );
         else
             return Redis::hGetAll($key);
+
+    }
+
+    public function hdel(string $key, string $field): int|bool
+    {
+
+        return Redis::hDel(config('cis-base.redis.prefix') . $key, $field);
 
     }
 
