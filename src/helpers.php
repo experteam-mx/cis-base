@@ -77,3 +77,17 @@ if (!function_exists('array_to_object')) {
     }
 
 }
+
+if (!function_exists('round_two')) {
+
+    function round_two($number): float
+    {
+
+        return round(
+            floatval($number),
+            2
+        );
+
+    }
+
+}
