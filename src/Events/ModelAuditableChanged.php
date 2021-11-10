@@ -28,7 +28,7 @@ class ModelAuditableChanged
 
         $this->model = $model;
         $this->originalAttrs = $model->getOriginal();
-        $this->user = $user;
+        $this->user = $user ?? auth()->user();
 
     }
 
