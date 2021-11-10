@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class ModelChanged
+class ModelAuditableChanged
 {
 
     use Dispatchable, SerializesModels;

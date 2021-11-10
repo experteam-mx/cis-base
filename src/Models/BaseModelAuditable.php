@@ -4,9 +4,9 @@
 namespace Experteam\CisBase\Models;
 
 
-use Experteam\CisBase\Events\ModelChanged;
+use Experteam\CisBase\Events\ModelAuditableChanged;
 
-trait BaseModelChanged
+trait BaseModelAuditable
 {
 
     protected static function booted()
@@ -14,7 +14,7 @@ trait BaseModelChanged
 
         static::saved(function ($model) {
 
-            ModelChanged::dispatch($model);
+            ModelAuditableChanged::dispatch($model);
 
         });
 
