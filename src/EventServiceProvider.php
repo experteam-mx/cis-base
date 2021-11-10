@@ -2,7 +2,7 @@
 
 namespace Experteam\CisBase;
 
-use Experteam\CisBase\Events\ModelChanged;
+use Experteam\CisBase\Events\ModelAuditableChanged;
 use Experteam\CisBase\Events\ModelInRedisChanged;
 use Experteam\CisBase\Listeners\SaveModelAuditLog;
 use Experteam\CisBase\Listeners\UpdateModelInRedis;
@@ -15,7 +15,7 @@ class EventServiceProvider extends ServiceProvider
         ModelInRedisChanged::class => [
             UpdateModelInRedis::class,
         ],
-        ModelChanged::class => [
+        ModelAuditableChanged::class => [
             SaveModelAuditLog::class,
         ],
     ];

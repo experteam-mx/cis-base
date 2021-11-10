@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class ModelChanged
+class ModelAuditableChanged
 {
 
     use Dispatchable, SerializesModels;
@@ -28,7 +28,7 @@ class ModelChanged
 
         $this->model = $model;
         $this->originalAttrs = $model->getOriginal();
-        $this->user = $user;
+        $this->user = $user ?? auth()->user();
 
     }
 

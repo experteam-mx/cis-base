@@ -3,7 +3,7 @@
 namespace Experteam\CisBase\Listeners;
 
 use ESLog;
-use Experteam\CisBase\Events\ModelChanged;
+use Experteam\CisBase\Events\ModelAuditableChanged;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class SaveModelAuditLog implements ShouldQueue
@@ -12,10 +12,10 @@ class SaveModelAuditLog implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param ModelChanged $event
+     * @param ModelAuditableChanged $event
      * @return void
      */
-    public function handle(ModelChanged $event)
+    public function handle(ModelAuditableChanged $event)
     {
 
         $modelClass = $event->model::class;
