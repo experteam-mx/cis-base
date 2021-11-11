@@ -23,7 +23,8 @@
     "ejarnutowski/laravel-api-key": "dev-master",
     "neronmoon/scriptsdev": "^0.1.9",
     "orkhanahmadov/laravel-accept-language-middleware": "^1.2",
-    "shalvah/laravel-jsend": "^2.2"
+    "shalvah/laravel-jsend": "^2.2",
+    "touhidurabir/laravel-model-sanitize": "^1.0"
   },
   "repositories": [
     {
@@ -48,13 +49,6 @@
         "RedisClient": "Experteam\\CisBase\\Facades\\RedisClientFacade",
         "ESLog": "Experteam\\CisBase\\Facades\\ESLogFacade"
       }
-    },
-    "scripts-dev": {
-      "post-autoload-dump": [
-        "@php artisan ide-helper:generate",
-        "@php artisan ide-helper:meta",
-        "@php artisan ide-helper:models -n"
-      ]
     }
   },
   "minimum-stability": "dev",
