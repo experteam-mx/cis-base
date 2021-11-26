@@ -26,10 +26,21 @@ class CisBaseServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        // Publish a config file
+        // Publish config files
         $this->publishes([
             __DIR__ . '/../config/cis-base.php' => config_path('cis-base.php'),
+            __DIR__ . '/../config/l5-swagger.php' => config_path('l5-swagger.php'),
         ], 'config');
+
+        // Publish views
+        $this->publishes([
+            __DIR__.'/../resources/views' => config('l5-swagger.defaults.paths.views'),
+        ], 'views');
+
+        // Publish languages
+        $this->publishes([
+            __DIR__.'/../resources/lang' => resource_path('lang'),
+        ], 'languages');
 
         // Custom validation rules
         \Validator::extend('key_ids', function ($attribute, $values, $parameters) {
