@@ -5,6 +5,7 @@ namespace Experteam\CisBase\Models;
 
 
 use Exception;
+use Experteam\CisBase\Exceptions\PaginationException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Schema;
 use Throwable;
@@ -26,22 +27,25 @@ trait BaseModelPaginate
         $limit = request()->query
             ->get('limit', 50);
 
-        if ($limit > 1000)
-            throw new Exception(__('general.more_than_1000'));
+        throw_if(
+            $limit > 1000,
+            PaginationException::class,
+            __('base.more_than_1000')
+        );
 
         request()->collect('order')
             ->each(function ($direction, $field) use ($query) {
 
                 throw_unless(
                     in_array(strtoupper($direction), ['ASC', 'DESC']),
-                    Exception::class,
-                    __('general.order_invalid_direction', ['value' => $direction])
+                    PaginationException::class,
+                    __('base.order_invalid_direction', compact('direction'))
                 );
 
                 throw_unless(
                     Schema::hasColumn($query->getModel()->getTable(), $field),
-                    Exception::class,
-                    __('general.order_invalid_field', ['field' => $field])
+                    PaginationException::class,
+                    __('base.order_invalid_field', compact('field'))
                 );
 
                 $query->orderBy($field, $direction);
