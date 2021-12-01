@@ -23,8 +23,7 @@
     "ejarnutowski/laravel-api-key": "dev-master",
     "neronmoon/scriptsdev": "^0.1.9",
     "orkhanahmadov/laravel-accept-language-middleware": "^1.2",
-    "shalvah/laravel-jsend": "^2.2",
-    "touhidurabir/laravel-model-sanitize": "^1.0"
+    "shalvah/laravel-jsend": "^2.2"
   },
   "repositories": [
     {
