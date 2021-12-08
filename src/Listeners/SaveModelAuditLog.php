@@ -25,7 +25,5 @@ class SaveModelAuditLog implements ShouldQueue
             'after' => $event->model->toArray(),
             'user' => $event->user,
         ]);
-
     }
-
 }

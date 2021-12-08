@@ -1,15 +1,12 @@
 <?php
 
-
 namespace Experteam\CisBase\Models;
-
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 abstract class BasePivot extends Pivot
 {
-
     use HasFactory;
     use BaseModelActive;
     use BaseModelDateFormat;
@@ -20,5 +17,4 @@ abstract class BasePivot extends Pivot
     protected $guarded = [
         'id', 'created_at', 'updated_at',
     ];
-
 }

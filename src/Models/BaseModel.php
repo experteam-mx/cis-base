@@ -1,15 +1,12 @@
 <?php
 
-
 namespace Experteam\CisBase\Models;
-
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 abstract class BaseModel extends Model
 {
-
     use HasFactory;
     use BaseModelActive;
     use BaseModelDateFormat;
@@ -18,5 +15,4 @@ abstract class BaseModel extends Model
     protected $guarded = [
         'id', 'created_at', 'updated_at',
     ];
-
 }

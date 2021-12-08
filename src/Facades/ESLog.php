@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Experteam\CisBase\Facades;
-
 
 use Illuminate\Support\Facades\Log;
 
@@ -20,7 +18,6 @@ class ESLog
                     $context
                 )
             );
-
     }
 
     public function defaultContext(): array
@@ -29,7 +26,6 @@ class ESLog
         return [
             'timestamp' => date_create(),
         ];
-
     }
 
     public function info(string $message, array $context = [])
@@ -43,7 +39,6 @@ class ESLog
                     $context
                 )
             );
-
     }
 
     public function notice(string $message, array $context = [])
@@ -57,7 +52,5 @@ class ESLog
                     $context
                 )
             );
-
     }
-
 }

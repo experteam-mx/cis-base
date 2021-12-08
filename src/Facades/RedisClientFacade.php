@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Experteam\CisBase\Facades;
-
 
 use Illuminate\Support\Facades\Facade;
 
@@ -13,7 +11,5 @@ class RedisClientFacade extends Facade
     {
 
         return RedisClient::class;
-
     }
-
 }

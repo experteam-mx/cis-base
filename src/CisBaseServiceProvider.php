@@ -20,7 +20,6 @@ class CisBaseServiceProvider extends ServiceProvider
 
         // Event service provider
         app()->register(EventServiceProvider::class);
-
     }
 
     public function boot()
@@ -30,17 +29,17 @@ class CisBaseServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../config/cis-base.php' => config_path('cis-base.php'),
             __DIR__ . '/../config/l5-swagger.php' => config_path('l5-swagger.php'),
-            __DIR__.'/../phpcs.xml' => base_path('phpcs.xml'),
+            __DIR__ . '/../phpcs-api.xml' => base_path('phpcs.xml'),
         ], 'config');
 
         // Publish views
         $this->publishes([
-            __DIR__.'/../resources/views' => config('l5-swagger.defaults.paths.views'),
+            __DIR__ . '/../resources/views' => config('l5-swagger.defaults.paths.views'),
         ], 'views');
 
         // Publish languages
         $this->publishes([
-            __DIR__.'/../resources/lang' => resource_path('lang'),
+            __DIR__ . '/../resources/lang' => resource_path('lang'),
         ], 'languages');
 
         // Custom validation rules
@@ -54,7 +53,6 @@ class CisBaseServiceProvider extends ServiceProvider
                         $parameters[1],
                         $attribute[1]
                     )->exists();
-
         });
         \Validator::extend('in_redis', function ($attribute, $values, $parameters) {
 
@@ -63,9 +61,6 @@ class CisBaseServiceProvider extends ServiceProvider
             return $isHash ?
                 \RedisClient::hexists($parameters[0], $values) :
                 \RedisClient::exists($parameters[0]);
-
         });
-
     }
-
 }
