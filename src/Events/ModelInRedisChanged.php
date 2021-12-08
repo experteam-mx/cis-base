@@ -8,8 +8,8 @@ use Illuminate\Queue\SerializesModels;
 
 class ModelInRedisChanged
 {
-
-    use Dispatchable, SerializesModels;
+    use Dispatchable;
+    use SerializesModels;
 
     public Model $model;
 
@@ -22,7 +22,5 @@ class ModelInRedisChanged
     {
 
         $this->model = $model;
-
     }
-
 }

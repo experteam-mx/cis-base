@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Experteam\CisBase\Models;
-
 
 use Experteam\CisBase\Events\ModelInRedisChanged;
 
@@ -15,9 +13,6 @@ trait BaseModelInRedis
         static::saved(function ($model) {
 
             ModelInRedisChanged::dispatch($model);
-
         });
-
     }
-
 }

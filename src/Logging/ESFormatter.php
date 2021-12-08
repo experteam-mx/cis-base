@@ -17,13 +17,12 @@ class ESFormatter
     public function __invoke(Logger $logger)
     {
 
-        foreach ($logger->getHandlers() as $handler)
+        foreach ($logger->getHandlers() as $handler) {
             $handler->setFormatter(
                 new LineFormatter(
                     "[%datetime%] app.%level_name%: %message% . %context%\n"
                 )
             );
-
+        }
     }
-
 }

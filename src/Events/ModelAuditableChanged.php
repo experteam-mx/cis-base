@@ -8,8 +8,8 @@ use Illuminate\Queue\SerializesModels;
 
 class ModelAuditableChanged
 {
-
-    use Dispatchable, SerializesModels;
+    use Dispatchable;
+    use SerializesModels;
 
     public Model $model;
 
@@ -29,7 +29,5 @@ class ModelAuditableChanged
         $this->model = $model;
         $this->originalAttrs = $model->getOriginal();
         $this->user = $user ?? auth()->user();
-
     }
-
 }

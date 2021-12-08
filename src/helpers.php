@@ -9,15 +9,14 @@ if (!function_exists('class_constants')) {
 
         $constants = $reflectionClass->getConstants();
 
-        if (empty($filter) || empty($constants))
+        if (empty($filter) || empty($constants)) {
             return $constants;
+        }
 
         return array_filter($constants, function ($value, $key) use ($filter) {
 
             return str_contains($key, $filter);
-
         }, ARRAY_FILTER_USE_BOTH);
-
     }
 
 }
@@ -28,7 +27,6 @@ if (!function_exists('class_use_trait')) {
     {
 
         return in_array($traitName, class_uses_recursive($className));
-
     }
 
 }
@@ -39,14 +37,11 @@ if (!function_exists('to_string')) {
     {
 
         return match (true) {
-
             is_array($element),
             is_object($element) => json_encode($element),
 
             default => (string)$element,
-
         };
-
     }
 
 }
@@ -60,7 +55,6 @@ if (!function_exists('round_four')) {
             floatval($number),
             4
         );
-
     }
 
 }
@@ -73,7 +67,6 @@ if (!function_exists('array_to_object')) {
         return json_decode(
             json_encode($array)
         );
-
     }
 
 }
@@ -87,7 +80,6 @@ if (!function_exists('round_two')) {
             floatval($number),
             2
         );
-
     }
 
 }

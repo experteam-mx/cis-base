@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Experteam\CisBase\Models;
-
 
 use Exception;
 use Experteam\CisBase\Exceptions\PaginationException;
@@ -49,12 +47,9 @@ trait BaseModelPaginate
                 );
 
                 $query->orderBy($field, $direction);
-
             });
 
         return $query->offset($offset)
             ->limit($limit);
-
     }
-
 }

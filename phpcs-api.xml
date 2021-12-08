@@ -3,9 +3,13 @@
     <description>The coding standard for our project.</description>
     <rule ref="PSR12"/>
 
+    <file>app</file>
+    <file>bootstrap</file>
     <file>config</file>
+    <file>database</file>
     <file>resources</file>
-    <file>src</file>
+    <file>routes</file>
+    <file>tests</file>
 
     <exclude-pattern>bootstrap/cache/*</exclude-pattern>
     <exclude-pattern>bootstrap/autoload.php</exclude-pattern>

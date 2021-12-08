@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Experteam\CisBase\Models;
-
 
 use Experteam\CisBase\Events\ModelAuditableChanged;
 
@@ -15,9 +13,6 @@ trait BaseModelAuditable
         static::saved(function ($model) {
 
             ModelAuditableChanged::dispatch($model);
-
         });
-
     }
-
 }
