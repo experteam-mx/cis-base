@@ -30,6 +30,7 @@ class CisBaseServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../config/cis-base.php' => config_path('cis-base.php'),
             __DIR__ . '/../config/l5-swagger.php' => config_path('l5-swagger.php'),
+            __DIR__.'/../phpcs.xml' => base_path('phpcs.xml'),
         ], 'config');
 
         // Publish views
