@@ -34,7 +34,9 @@ class CisBaseServiceProvider extends ServiceProvider
 
         // Publish views
         $this->publishes([
-            __DIR__ . '/../resources/views' => config('l5-swagger.defaults.paths.views'),
+            __DIR__ . '/../resources/views/l5-swagger' => config('l5-swagger.defaults.paths.views'),
+            __DIR__ . '/../resources/views/welcome.blade.php' => resource_path('views/welcome.blade.php'),
+            __DIR__ . '/../resources/cis.png' => public_path('cis.png'),
         ], 'views');
 
         // Publish languages
