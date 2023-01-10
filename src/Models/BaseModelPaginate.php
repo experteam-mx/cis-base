@@ -2,23 +2,14 @@
 
 namespace Experteam\CisBase\Models;
 
-use Exception;
 use Experteam\CisBase\Exceptions\PaginationException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Schema;
-use Throwable;
 
 trait BaseModelPaginate
 {
-
-    /**
-     * @param Builder $query
-     * @return Builder
-     * @throws Exception|Throwable
-     */
     public function scopeCustomPaginate(Builder $query): Builder
     {
-
         $offset = request()->query
             ->get('offset', 0);
 
@@ -26,14 +17,13 @@ trait BaseModelPaginate
             ->get('limit', 50);
 
         throw_if(
-            $limit > 1000,
+            $limit > config('cis-base.model_paginate_limit', 1000),
             PaginationException::class,
             __('base.more_than_1000')
         );
 
         request()->collect('order')
             ->each(function ($direction, $field) use ($query) {
-
                 throw_unless(
                     in_array(strtoupper($direction), ['ASC', 'DESC']),
                     PaginationException::class,

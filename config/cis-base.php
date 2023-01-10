@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | General
@@ -9,9 +8,18 @@ return [
     |
     */
 
+    'dd_exception' => env('APP_DD_EXCEPTION', false),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Request options
+    |--------------------------------------------------------------------------
+    |
+    */
+
     'use_apikey' => env('APP_USE_APIKEY', true),
     'accept_language' => env('APP_ACCEPT_LANGUAGE', true),
-    'dd_exception' => env('APP_DD_EXCEPTION', false),
+    'model_paginate_limit' => env('APP_MODEL_PAGINATE_LIMIT', 1000),
 
     /*
     |--------------------------------------------------------------------------
@@ -21,13 +29,10 @@ return [
     */
 
     'formats' => [
-
         'date_time' => 'Y-m-d H:i:s',
-
     ],
 
     'redis' => [
         'prefix' => env('REDIS_PREFIX', 'base:')
     ],
-
 ];
