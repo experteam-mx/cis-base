@@ -19,7 +19,7 @@ return [
 
     'use_apikey' => env('APP_USE_APIKEY', true),
     'accept_language' => env('APP_ACCEPT_LANGUAGE', true),
-    'default_limit' => env('APP_DEFAULT_LIMIT', true),
+    'model_paginate_limit' => env('APP_MODEL_PAGINATE_LIMIT', 1000),
 
     /*
     |--------------------------------------------------------------------------

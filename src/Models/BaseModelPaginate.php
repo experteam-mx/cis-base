@@ -17,7 +17,7 @@ trait BaseModelPaginate
             ->get('limit', 50);
 
         throw_if(
-            $limit > config('cis-base.default_limit', 1000),
+            $limit > config('cis-base.model_paginate_limit', 1000),
             PaginationException::class,
             __('base.more_than_1000')
         );
